@@ -48,39 +48,39 @@ jobs:
 
   release:
 
-  needs: build_test
+    needs: build_test
 
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
+    steps:
 
-  - name: Download Build Artifact
+    - name: Download Build Artifact
 
-    uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v4
 
-    with:
+      with:
 
-      name: build-artifact
+        name: build-artifact
 
-      path: dist
+        path: dist
 
-  - name: Upload to Azure Blob Storage
+    - name: Upload to Azure Blob Storage
 
-    uses: azure/cli@v2
+     uses: azure/cli@v2
 
-    with:
+     with:
 
-      inlineScript: |
+        inlineScript: |
 
-        az storage blob upload-batch \
+          az storage blob upload-batch \
 
-          --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" \
+            --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" \
 
-          --destination demo \
+            --destination demo \
 
-          --source dist/build-artifact \
+            --source dist/build-artifact \
 
-          --overwrite
+            --overwrite
 
 
 
