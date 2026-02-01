@@ -76,7 +76,7 @@ jobs:
 
             --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" \
 
-            --destination demo \
+            --destination buildartifact \
 
             --source dist/build-artifact \
 
